@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Catalog Movie</string>
+    <string name="detail">Detail</string>
+    <string name="now_playing">Movies</string>
+    <string name="tv_show">Tv Show</string>
+    <string name="dummy">Dummy</string>
+    <string name="poster">Poster</string>
+    <string name="banner">Banner</string>
+    <string name="arrow">Arrow Left</string>
+    <string name="overview">Overview</string>
+</resources>
