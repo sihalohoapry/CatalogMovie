@@ -9,9 +9,7 @@ import com.sihaloho.catalogmovie.R
 import com.sihaloho.catalogmovie.data.entity.MovieEntity
 import com.sihaloho.catalogmovie.data.entity.TvShowEntity
 import com.sihaloho.catalogmovie.databinding.ActivityDetailMovieBinding
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class DetailMovieActivity : AppCompatActivity() {
 
     companion object {

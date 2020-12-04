@@ -1,9 +1,10 @@
 package com.sihaloho.catalogmovie.data.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.sihaloho.catalogmovie.data.repository.TvShowRepository
+import com.sihaloho.catalogmovie.data.entity.TvShowEntity
+import com.sihaloho.catalogmovie.data.repository.CatalogRepository
 
-class TvShowViewModel @ViewModelInject constructor(private val repository: TvShowRepository) : ViewModel() {
-    val tvShow = repository.getDataTvShow()
+class TvShowViewModel (private val repository: CatalogRepository) : ViewModel() {
+    fun getTvShow(): LiveData<List<TvShowEntity>> = repository.getTvShow()
 }

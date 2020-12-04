@@ -2,8 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-parcelize'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -61,10 +59,10 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
+    testImplementation "androidx.arch.core:core-testing:$archLifecycleVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
-    testImplementation "androidx.arch.core:core-testing:2.2.0"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
 
@@ -81,16 +79,4 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
-
-    // Dagger Hilt
-    implementation "com.google.dagger:hilt-android:$hiltVersion"
-    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
-    kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
-
-
-
-}
-kapt {
-    correctErrorTypes true
 }

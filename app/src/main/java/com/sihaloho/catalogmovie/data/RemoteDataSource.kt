@@ -2,20 +2,17 @@ package com.sihaloho.catalogmovie.data
 
 import com.sihaloho.catalogmovie.data.entity.MovieEntity
 import com.sihaloho.catalogmovie.data.entity.TvShowEntity
-import com.sihaloho.catalogmovie.data.response.MovieResponse
 import com.sihaloho.catalogmovie.data.retrofit.ApiConfig
-import com.sihaloho.catalogmovie.data.retrofit.MovieApi
 import retrofit2.await
-import javax.inject.Inject
 
-class RemoteDataSource @Inject constructor(apiConfig: ApiConfig) {
+class RemoteDataSource  {
     companion object {
         @Volatile
         private var instance: RemoteDataSource? = null
 
-        fun getInstance(apiConfig: ApiConfig): RemoteDataSource =
+        fun getInstance(): RemoteDataSource =
             instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(apiConfig)
+                instance ?: RemoteDataSource()
             }
     }
 

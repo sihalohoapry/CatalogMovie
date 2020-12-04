@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Catalog Movie</string>
-    <string name="detail">Detail</string>
     <string name="now_playing">Movies</string>
     <string name="tv_show">Tv Show</string>
     <string name="dummy">Dummy</string>
