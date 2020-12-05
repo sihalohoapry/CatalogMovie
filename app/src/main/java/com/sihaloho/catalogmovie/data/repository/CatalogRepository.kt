@@ -57,7 +57,7 @@ class CatalogRepository private constructor(private val remoteDataSource: Remote
                             response.id,
                             response.original_name,
                             response.vote_average,
-                            response.overview,
+                            response?.overview,
                             response.backdrop_path,
                             response.poster_path,
                             response.first_air_date
