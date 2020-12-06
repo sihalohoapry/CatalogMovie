@@ -10,7 +10,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.sihaloho.catalogmovie.R
 import com.sihaloho.catalogmovie.data.entity.TvShowEntity
 import com.sihaloho.catalogmovie.databinding.ItemListTvshowBinding
-import com.sihaloho.catalogmovie.ui.DetailMovieActivity
+import com.sihaloho.catalogmovie.ui.activity.DetailMovieActivity
 
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 

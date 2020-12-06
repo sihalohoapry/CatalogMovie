@@ -7,4 +7,6 @@
     <string name="banner">Banner</string>
     <string name="arrow">Arrow Left</string>
     <string name="overview">Overview</string>
+    <string name="fav_movie">Favorite Movie</string>
+    <string name="fav_tv">Favorite Tv Show</string>
 </resources>

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sihaloho.catalogmovie">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,11 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CatalogMovie">
-        <activity android:name=".ui.DetailMovieActivity"
-            android:theme="@style/Theme.CatalogMovieNo">
+        <activity android:name=".ui.activity.FavTvShowActivity">
+
         </activity>
-        <activity android:name=".ui.MainActivity"
-            android:theme="@style/Theme.CatalogMovieNo">
+        <activity android:name=".ui.activity.FavMovieActivity" />
+        <activity
+            android:name=".ui.activity.DetailMovieActivity"
+            android:theme="@style/Theme.CatalogMovieNo" />
+        <activity
+            android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

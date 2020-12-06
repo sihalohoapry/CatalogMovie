@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sihaloho.catalogmovie.data.repository.CatalogRepository
 import com.sihaloho.catalogmovie.di.Injection
-import com.sihaloho.catalogmovie.ui.MainActivity
+import com.sihaloho.catalogmovie.ui.activity.MainActivity
 
 class ViewModelFactory private constructor(private val mRepository: CatalogRepository) : ViewModelProvider.NewInstanceFactory() {
 

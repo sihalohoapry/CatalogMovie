@@ -1,11 +1,13 @@
-package com.sihaloho.catalogmovie.ui
+package com.sihaloho.catalogmovie.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sihaloho.catalogmovie.R
 import com.sihaloho.catalogmovie.data.viewmodel.MovieViewModel
 import com.sihaloho.catalogmovie.data.viewmodel.TvShowViewModel
 import com.sihaloho.catalogmovie.data.viewmodel.ViewModelFactory
@@ -45,6 +47,25 @@ class MainActivity : AppCompatActivity(){
             adapterTv.setData(it)
         }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.item_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.fav_movie ->{
+                startActivity(Intent(this, FavMovieActivity::class.java))
+            }
+
+            R.id.fav_tv_show ->{
+                startActivity(Intent(this, FavTvShowActivity::class.java))
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

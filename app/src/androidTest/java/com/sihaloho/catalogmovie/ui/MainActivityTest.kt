@@ -9,6 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.sihaloho.catalogmovie.R
+import com.sihaloho.catalogmovie.ui.activity.MainActivity
 import org.junit.Rule
 import org.junit.Test
 

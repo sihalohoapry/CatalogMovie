@@ -1,6 +1,5 @@
-package com.sihaloho.catalogmovie.ui
+package com.sihaloho.catalogmovie.ui.activity
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
