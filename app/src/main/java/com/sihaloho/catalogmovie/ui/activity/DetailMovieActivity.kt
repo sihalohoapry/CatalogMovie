@@ -6,7 +6,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.sihaloho.catalogmovie.R
 import com.sihaloho.catalogmovie.data.entity.MovieEntity
+import com.sihaloho.catalogmovie.data.entity.MovieEntityRoom
 import com.sihaloho.catalogmovie.data.entity.TvShowEntity
+import com.sihaloho.catalogmovie.data.entity.TvShowEntityRoom
 import com.sihaloho.catalogmovie.databinding.ActivityDetailMovieBinding
 
 class DetailMovieActivity : AppCompatActivity() {
@@ -22,8 +24,8 @@ class DetailMovieActivity : AppCompatActivity() {
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val data = intent.getParcelableExtra<MovieEntity?>(EXTRA_MOVIE)
-        val dataTvShow = intent.getParcelableExtra<TvShowEntity?>(EXTRA_TV_SHOW)
+        val data = intent.getParcelableExtra<MovieEntityRoom?>(EXTRA_MOVIE)
+        val dataTvShow = intent.getParcelableExtra<TvShowEntityRoom?>(EXTRA_TV_SHOW)
         if (data!=null){
             binding.apply {
                 Glide.with(baseContext)

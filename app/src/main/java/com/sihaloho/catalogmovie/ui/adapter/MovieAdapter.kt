@@ -9,15 +9,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.sihaloho.catalogmovie.R
 import com.sihaloho.catalogmovie.data.entity.MovieEntity
+import com.sihaloho.catalogmovie.data.entity.MovieEntityRoom
 import com.sihaloho.catalogmovie.databinding.ItemListMovieBinding
 import com.sihaloho.catalogmovie.ui.activity.DetailMovieActivity
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     lateinit var contextAdapter : Context
-    private val listData = ArrayList<MovieEntity>()
+    private val listData = ArrayList<MovieEntityRoom>()
 
-    fun setData(data: List<MovieEntity>) {
+    fun setData(data: List<MovieEntityRoom>) {
         listData.clear()
         listData.addAll(data)
         notifyDataSetChanged()
@@ -25,7 +26,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     inner class MovieViewHolder(private val binding: ItemListMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: MovieEntity) {
+        fun bind(movie: MovieEntityRoom) {
             Glide.with(itemView)
                 .load("${movie.baseUrl}${movie.poster_path}")
                 .transition(DrawableTransitionOptions.withCrossFade())

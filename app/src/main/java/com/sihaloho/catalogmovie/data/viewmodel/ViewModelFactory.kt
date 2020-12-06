@@ -1,5 +1,6 @@
 package com.sihaloho.catalogmovie.data.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sihaloho.catalogmovie.data.repository.CatalogRepository
@@ -12,9 +13,9 @@ class ViewModelFactory private constructor(private val mRepository: CatalogRepos
         @Volatile
         private var instance: ViewModelFactory? = null
 
-        fun getInstance(mainActivity: MainActivity): ViewModelFactory =
+        fun getInstance(context: Context): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideRepository())
+                instance ?: ViewModelFactory(Injection.provideRepository(context))
             }
     }
 

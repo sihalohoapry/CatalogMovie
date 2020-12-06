@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sihaloho.catalogmovie.R
 import com.sihaloho.catalogmovie.data.viewmodel.MovieViewModel
 import com.sihaloho.catalogmovie.data.viewmodel.TvShowViewModel
 import com.sihaloho.catalogmovie.data.viewmodel.ViewModelFactory
+import com.sihaloho.catalogmovie.data.vo.Status
 import com.sihaloho.catalogmovie.databinding.ActivityMainBinding
 import com.sihaloho.catalogmovie.ui.adapter.MovieAdapter
 import com.sihaloho.catalogmovie.ui.adapter.TvShowAdapter
@@ -32,9 +35,22 @@ class MainActivity : AppCompatActivity(){
         binding.rvMovie.adapter = adapter
         val factory = ViewModelFactory.getInstance(this)
         mainViewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
-        mainViewModel.getMovies().observe(this){
-            adapter.setData(it)
-        }
+        mainViewModel.getMovies().observe(this,{ movies ->
+            if (movies != null) {
+                when (movies.status) {
+                    Status.LOADING -> binding.progressBar.visibility = View.VISIBLE
+                    Status.SUCCESS -> {
+                        binding.progressBar.visibility = View.GONE
+                        movies.data?.let { adapter.setData(it) }
+                        adapter.notifyDataSetChanged()
+                    }
+                    Status.ERROR -> {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
 
 
         val adapterTv = TvShowAdapter()
@@ -43,9 +59,22 @@ class MainActivity : AppCompatActivity(){
         binding.rvTvShow.adapter = adapterTv
         val factoryTvShow = ViewModelFactory.getInstance(this)
         tvShowViewModel = ViewModelProvider(this, factoryTvShow)[TvShowViewModel::class.java]
-        tvShowViewModel.getTvShow().observe(this){
-            adapterTv.setData(it)
-        }
+        tvShowViewModel.getTvShow().observe(this,{ tvShow->
+            if (tvShow != null) {
+                when (tvShow.status) {
+                    Status.LOADING -> binding?.progressBar?.visibility = View.VISIBLE
+                    Status.SUCCESS -> {
+                        binding?.progressBar?.visibility = View.GONE
+                        tvShow.data?.let { adapterTv.setData(it) }
+                        adapterTv.notifyDataSetChanged()
+                    }
+                    Status.ERROR -> {
+                        binding?.progressBar?.visibility = View.GONE
+                        Toast.makeText(this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
 
     }
 
