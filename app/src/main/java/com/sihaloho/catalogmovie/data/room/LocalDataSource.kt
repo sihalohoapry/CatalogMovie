@@ -1,6 +1,7 @@
 package com.sihaloho.catalogmovie.data.room
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import com.sihaloho.catalogmovie.data.entity.MovieEntity
 import com.sihaloho.catalogmovie.data.entity.MovieEntityRoom
 import com.sihaloho.catalogmovie.data.entity.TvShowEntity
@@ -15,33 +16,31 @@ class LocalDataSource private constructor(private val mCatalogDao: CatalogDao){
     }
 
     //movie
-    fun getAllMovie(): LiveData<List<MovieEntityRoom>> = mCatalogDao.getAllMovie()
+    fun getAllMovie(): DataSource.Factory<Int, MovieEntityRoom> = mCatalogDao.getAllMovie()
+
     fun insertMovie(movie: List<MovieEntityRoom>) = mCatalogDao.insertMovie(movie)
     fun getDetailMovie(movieId: String) : LiveData<MovieEntityRoom> = mCatalogDao.getDetailMovieById(movieId)
 
 
     //tvShow
-    fun getAllTvShow(): LiveData<List<TvShowEntityRoom>> = mCatalogDao.getAllTvShow()
+    fun getAllTvShow(): DataSource.Factory<Int, TvShowEntityRoom> = mCatalogDao.getAllTvShow()
     fun insertTvShow(tvShow: List<TvShowEntityRoom>) = mCatalogDao.insertTvShow(tvShow)
     fun getDetailTvShow(tvShowId: String) : LiveData<TvShowEntityRoom> = mCatalogDao.getDetailTvShowById(tvShowId)
 
     //favorite
-    fun getMovieFavorite(): LiveData<List<MovieEntityRoom>> = mCatalogDao.getMovieFavorite()
-    fun getTvShowFavorite(): LiveData<List<TvShowEntityRoom>> = mCatalogDao.getTvShowFavorite()
+    fun getMovieFavorite(): DataSource.Factory<Int, MovieEntityRoom> = mCatalogDao.getMovieFavorite()
 
-    //setFav
-//    fun setMovieFavorite(movie: MovieEntityRoom, newState: Boolean) {
-//        movie.favorite_movie = newState
-//        mCatalogDao.updateMovie(movie)
-//    }
+    fun getTvShowFavorite(): DataSource.Factory<Int, TvShowEntityRoom> = mCatalogDao.getTvShowFavorite()
+
+
 
     fun setMovieFavorite(movie : MovieEntityRoom) {
         movie.favorite_movie = !movie.favorite_movie
         mCatalogDao.updateMovie(movie)
     }
 
-    fun setTvShowFavorite(tvShow: TvShowEntityRoom, newState: Boolean) {
-        tvShow.favorite_tv_show = newState
+    fun setTvShowFavorite(tvShow: TvShowEntityRoom) {
+        tvShow.favorite_tv_show = !tvShow.favorite_tv_show
         mCatalogDao.updateTvShow(tvShow)
     }
 

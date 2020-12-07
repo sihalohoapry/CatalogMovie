@@ -22,26 +22,29 @@ class MainActivity : AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainViewModel : MovieViewModel
     private lateinit var tvShowViewModel : TvShowViewModel
+    private lateinit var adapter : MovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = MovieAdapter()
-        adapter.notifyDataSetChanged()
         binding.rvMovie.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvMovie.setHasFixedSize(true)
+        adapter = MovieAdapter()
         binding.rvMovie.adapter = adapter
+
         val factory = ViewModelFactory.getInstance(this)
         mainViewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
         mainViewModel.getMovies().observe(this,{ movies ->
+
             if (movies != null) {
                 when (movies.status) {
                     Status.LOADING -> binding.progressBar.visibility = View.VISIBLE
                     Status.SUCCESS -> {
                         binding.progressBar.visibility = View.GONE
-                        movies.data?.let { adapter.setData(it) }
+                        adapter.submitList(movies.data)
+                        binding.rvMovie.adapter = adapter
                         adapter.notifyDataSetChanged()
                     }
                     Status.ERROR -> {
@@ -62,14 +65,14 @@ class MainActivity : AppCompatActivity(){
         tvShowViewModel.getTvShow().observe(this,{ tvShow->
             if (tvShow != null) {
                 when (tvShow.status) {
-                    Status.LOADING -> binding?.progressBar?.visibility = View.VISIBLE
+                    Status.LOADING -> binding.progressBar.visibility = View.VISIBLE
                     Status.SUCCESS -> {
-                        binding?.progressBar?.visibility = View.GONE
-                        tvShow.data?.let { adapterTv.setData(it) }
+                        binding.progressBar.visibility = View.GONE
+                        adapterTv.submitList(tvShow.data)
                         adapterTv.notifyDataSetChanged()
                     }
                     Status.ERROR -> {
-                        binding?.progressBar?.visibility = View.GONE
+                        binding.progressBar.visibility = View.GONE
                         Toast.makeText(this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                     }
                 }

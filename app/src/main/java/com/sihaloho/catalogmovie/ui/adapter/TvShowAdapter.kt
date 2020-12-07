@@ -1,26 +1,37 @@
 package com.sihaloho.catalogmovie.ui.adapter
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.sihaloho.catalogmovie.R
+import com.sihaloho.catalogmovie.data.entity.MovieEntityRoom
 import com.sihaloho.catalogmovie.data.entity.TvShowEntityRoom
 import com.sihaloho.catalogmovie.databinding.ItemListTvshowBinding
 import com.sihaloho.catalogmovie.ui.activity.DetailMovieActivity
 
-class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
+class TvShowAdapter : PagedListAdapter<TvShowEntityRoom,TvShowAdapter.TvShowViewHolder>(DIFF_CALLBACK) {
 
-    private val listData = ArrayList<TvShowEntityRoom>()
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TvShowEntityRoom>() {
+            override fun areItemsTheSame(oldItem: TvShowEntityRoom, newItem: TvShowEntityRoom): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    fun setData(data: List<TvShowEntityRoom>) {
-        listData.clear()
-        listData.addAll(data)
-        notifyDataSetChanged()
+            override fun areContentsTheSame(
+                oldItem: TvShowEntityRoom,
+                newItem: TvShowEntityRoom
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
+
+
 
     inner class TvShowViewHolder(private val binding: ItemListTvshowBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -37,7 +48,7 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-                    intent.putExtra(DetailMovieActivity.EXTRA_TV_SHOW, listData[position])
+                    intent.putExtra(DetailMovieActivity.EXTRA_TV_SHOW, tvShow)
                     itemView.context.startActivity(intent)
                 }
             }
@@ -46,8 +57,10 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 
 
     override fun onBindViewHolder(holder: TvShowViewHolder, position: Int) {
-        holder.bind(listData[position])
-
+        val tvShow = getItem(position)
+        if (tvShow != null){
+            holder.bind(tvShow)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowAdapter.TvShowViewHolder {
@@ -56,6 +69,5 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
         return TvShowViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = listData.size
 
 }

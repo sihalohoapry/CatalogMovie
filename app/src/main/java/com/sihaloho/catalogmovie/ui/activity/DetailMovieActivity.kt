@@ -80,9 +80,27 @@ class DetailMovieActivity : AppCompatActivity() {
             voteAverage.text = it.vote_average.toString()
             val statusFav = it.favorite_tv_show
             setFavStatus(statusFav)
+            binding.fabLove.setOnClickListener {
+                val dataTvShow = intent.getParcelableExtra<TvShowEntityRoom?>(EXTRA_TV_SHOW)
+                if (dataTvShow != null){
+                    setFavoriteTvShow(dataTvShow)
+                }
 
 
+            }
 
+
+        }
+    }
+
+    private fun setFavoriteTvShow(dataTvShow: TvShowEntityRoom) {
+        if (dataTvShow != null) {
+            if (dataTvShow.favorite_tv_show) {
+                Toast.makeText(this, "Removed from favorite", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Added to favorite", Toast.LENGTH_SHORT).show()
+            }
+            viewModel.setFavoriteTvShow(dataTvShow)
         }
     }
 
@@ -116,8 +134,11 @@ class DetailMovieActivity : AppCompatActivity() {
             }
 
             binding.fabLove.setOnClickListener {
+                val data = intent.getParcelableExtra<MovieEntityRoom?>(EXTRA_MOVIE)
+                if (data != null){
+                    setFavoriteMovie(movie)
+                }
 
-                setFavorite(movie)
 
             }
 
@@ -127,12 +148,12 @@ class DetailMovieActivity : AppCompatActivity() {
         }
     }
 
-    private fun setFavorite(movie: MovieEntityRoom) {
+    private fun setFavoriteMovie(movie: MovieEntityRoom) {
         if (movie != null) {
             if (movie.favorite_movie) {
-                Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.remove), Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "gagal", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.added), Toast.LENGTH_SHORT).show()
             }
             viewModel.setFavoriteMovie(movie)
         }

@@ -12,10 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CatalogMovie">
-        <activity android:name=".ui.activity.FavTvShowActivity">
+        <activity android:name=".ui.activity.FavTvShowActivity"
+            android:label="@string/fav_tv">
 
         </activity>
-        <activity android:name=".ui.activity.FavMovieActivity" />
+        <activity android:name=".ui.activity.FavMovieActivity"
+            android:label="@string/fav_movie"/>
         <activity
             android:name=".ui.activity.DetailMovieActivity"
             android:theme="@style/Theme.CatalogMovieNo" />

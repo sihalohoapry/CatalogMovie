@@ -9,4 +9,8 @@
     <string name="overview">Overview</string>
     <string name="fav_movie">Favorite Movie</string>
     <string name="fav_tv">Favorite Tv Show</string>
+    <string name="message_undo">Undo</string>
+    <string name="message_ok">Okay</string>
+    <string name="remove">Remove from favorite</string>
+    <string name="added">Added to favorite</string>
 </resources>

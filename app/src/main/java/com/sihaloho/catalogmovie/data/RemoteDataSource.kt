@@ -42,11 +42,7 @@ class RemoteDataSource  {
         }
         return resultMovie
 
-//        ApiConfig.instance.getMovies().await().results.let { listMovie ->
-//            callback.onAllMoviesReceived(
-//                listMovie
-//            )
-//        }
+
     }
     fun getTvShow() : LiveData<ApiResponse<List<TvShowEntity>>> {
         val resultTvShow = MutableLiveData<ApiResponse<List<TvShowEntity>>>()
@@ -67,11 +63,7 @@ class RemoteDataSource  {
         }
         return resultTvShow
 
-//        ApiConfig.instance.getTvShow().await().results.let { listTvShow ->
-//            callback.onAllTvShowReceived(
-//                listTvShow
-//            )
-//        }
+
     }
 
 
