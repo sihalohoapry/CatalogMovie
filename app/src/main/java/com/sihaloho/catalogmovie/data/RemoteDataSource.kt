@@ -74,11 +74,5 @@ class RemoteDataSource  {
 //        }
     }
 
-    interface LoadMoviesCallback {
-        fun onAllMoviesReceived(movieResponse: List<MovieEntity>)
-    }
-    interface LoadTvShowCallback {
-        fun onAllTvShowReceived(tvShowResponse: List<TvShowEntity>)
-    }
 
 }

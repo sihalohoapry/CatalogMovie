@@ -12,6 +12,9 @@ import com.sihaloho.catalogmovie.data.entity.TvShowEntityRoom
 import com.sihaloho.catalogmovie.data.room.LocalDataSource
 import com.sihaloho.catalogmovie.data.vo.Resource
 import com.sihaloho.catalogmovie.utils.AppExecutors
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 class CatalogRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -32,6 +35,7 @@ class CatalogRepository private constructor(
             }
     }
 
+    //movie
     override fun getMovies(): LiveData<Resource<List<MovieEntityRoom>>> {
         return object :
             NetworkBoundResource<List<MovieEntityRoom>, List<MovieEntity>>(appExecutors) {
@@ -56,7 +60,8 @@ class CatalogRepository private constructor(
                         response.overview,
                         response.backdrop_path,
                         response.poster_path,
-                        false)
+                        false
+                    )
                     courseList.add(course)
                 }
 
@@ -66,14 +71,23 @@ class CatalogRepository private constructor(
 
     }
 
-    override fun getFavMovie(): LiveData<List<MovieEntityRoom>> =
-        localDataSource.getFavMovie()
+    override fun getMovieFavorite(): LiveData<List<MovieEntityRoom>> =
+        localDataSource.getMovieFavorite()
 
-    override fun setMovieFav(movie: MovieEntityRoom, state: Boolean) {
-        appExecutors.diskIO().execute { localDataSource.setFavMovie(movie, state) }
+//    override fun setMovieFavorite(movie: MovieEntityRoom, state: Boolean) =
+//        appExecutors.diskIO().execute { localDataSource.setMovieFavorite(movie, state) }
+
+    override fun setMovieFavorite(movie: MovieEntityRoom) {
+        CoroutineScope(IO).launch {
+            localDataSource.setMovieFavorite(movie)
+        }
     }
 
+    fun getMovieDetail(movieId: String): LiveData<MovieEntityRoom> =
+        localDataSource.getDetailMovie(movieId)
 
+
+    //tvShow
     override fun getTvShow(): LiveData<Resource<List<TvShowEntityRoom>>> {
 
         return object :
@@ -99,7 +113,8 @@ class CatalogRepository private constructor(
                         response.backdrop_path,
                         response.poster_path,
                         response.first_air_date,
-                        false)
+                        false
+                    )
                     courseList.add(course)
                 }
 
@@ -110,59 +125,16 @@ class CatalogRepository private constructor(
 
     }
 
-    override fun getFavTvShow(): LiveData<List<TvShowEntityRoom>> =
-        localDataSource.getFavTvShow()
+    override fun getTvShowFavorite(): LiveData<List<TvShowEntityRoom>> =
+        localDataSource.getTvShowFavorite()
 
-    override fun setTvShowFav(tvShow: TvShowEntityRoom, state: Boolean) {
-        appExecutors.diskIO().execute { localDataSource.setFavTvShow(tvShow, state) }
-    }
+    override fun setTvShowFavorite(tvShow: TvShowEntityRoom, state: Boolean) =
+        appExecutors.diskIO().execute { localDataSource.setTvShowFavorite(tvShow, state) }
+
+    fun getTvShowDetail(tvShowId: String): LiveData<TvShowEntityRoom> =
+        localDataSource.getDetailTvShow(tvShowId)
+
+
 }
 
 
-//        val tvShow = MutableLiveData<List<TvShowEntity>>()
-//        CoroutineScope(IO).launch {
-//            remoteDataSource.getTvShow(object : RemoteDataSource.LoadTvShowCallback {
-//                override fun onAllTvShowReceived(tvShowResponse: List<TvShowEntity>) {
-//                    val tvShowList = ArrayList<TvShowEntity>()
-//                    for (response in tvShowResponse) {
-//                        val movie = TvShowEntity(
-//                            response.id,
-//                            response.original_name,
-//                            response.vote_average,
-//                            response?.overview,
-//                            response.backdrop_path,
-//                            response.poster_path,
-//                            response.first_air_date
-//                        )
-//                        tvShowList.add(movie)
-//                    }
-//                    tvShow.postValue(tvShowList)
-//                }
-//
-//            })
-//        }
-//        return tvShow
-
-
-//        val listMovie = MutableLiveData<List<MovieEntity>>()
-//        CoroutineScope(IO).launch {
-//            remoteDataSource.getMovies(object : RemoteDataSource.LoadMoviesCallback {
-//                override fun onAllMoviesReceived(movieResponse: List<MovieEntity>) {
-//                    val movieList = ArrayList<MovieEntity>()
-//                    for (response in movieResponse) {
-//                        val movie = MovieEntity(
-//                            response.id,
-//                            response.title,
-//                            response.release_date,
-//                            response.vote_average,
-//                            response.overview,
-//                            response.backdrop_path,
-//                            response.poster_path
-//                        )
-//                        movieList.add(movie)
-//                    }
-//                    listMovie.postValue(movieList)
-//                }
-//            })
-//        }
-//        return listMovie
