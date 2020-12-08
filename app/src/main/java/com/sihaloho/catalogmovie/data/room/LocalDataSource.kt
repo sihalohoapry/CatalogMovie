@@ -2,9 +2,7 @@ package com.sihaloho.catalogmovie.data.room
 
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
-import com.sihaloho.catalogmovie.data.entity.MovieEntity
 import com.sihaloho.catalogmovie.data.entity.MovieEntityRoom
-import com.sihaloho.catalogmovie.data.entity.TvShowEntity
 import com.sihaloho.catalogmovie.data.entity.TvShowEntityRoom
 
 class LocalDataSource private constructor(private val mCatalogDao: CatalogDao){

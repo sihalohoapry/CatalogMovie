@@ -1,14 +1,12 @@
 package com.sihaloho.catalogmovie.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sihaloho.catalogmovie.R
 import com.sihaloho.catalogmovie.data.viewmodel.MovieViewModel
 import com.sihaloho.catalogmovie.data.viewmodel.ViewModelFactory
 import com.sihaloho.catalogmovie.databinding.ActivityFavTvShowBinding
-import com.sihaloho.catalogmovie.ui.adapter.FavMovieAdapter
 import com.sihaloho.catalogmovie.ui.adapter.TvShowAdapter
 
 class FavTvShowActivity : AppCompatActivity() {

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.sihaloho.catalogmovie.R
-import com.sihaloho.catalogmovie.data.entity.MovieEntityRoom
 import com.sihaloho.catalogmovie.data.entity.TvShowEntityRoom
 import com.sihaloho.catalogmovie.databinding.ItemListTvshowBinding
 import com.sihaloho.catalogmovie.ui.activity.DetailMovieActivity

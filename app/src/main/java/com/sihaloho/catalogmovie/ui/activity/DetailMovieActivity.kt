@@ -43,14 +43,9 @@ class DetailMovieActivity : AppCompatActivity() {
             val tvShowId = dataTvShow.id
             detailTvShow(tvShowId)
         }
-
-
         binding.ivArrowLeft.setOnClickListener {
             super.onBackPressed()
         }
-
-
-
 
     }
 
@@ -61,29 +56,32 @@ class DetailMovieActivity : AppCompatActivity() {
         })
     }
 
-    private fun displayDataTvShow(it: TvShowEntityRoom) {
+    private fun displayDataTvShow(tvShow: TvShowEntityRoom) {
         binding.apply {
             Glide.with(baseContext)
-                .load("${it.baseUrl}${it.poster_path}")
+                .load("${tvShow.baseUrl}${tvShow.poster_path}")
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .error(R.drawable.ic_error)
                 .into(ivPosterDetail)
             Glide.with(baseContext)
-                .load("${it.baseUrl}${it.backdrop_path}")
+                .load("${tvShow.baseUrl}${tvShow.backdrop_path}")
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .error(R.drawable.ic_error)
                 .into(ivBannerDetail)
 
-            tvTitile.text = it.original_name
-            tvDateDetail.text = it.first_air_date
-            tvOverviewDetail.text = it.overview
-            voteAverage.text = it.vote_average.toString()
-            val statusFav = it.favorite_tv_show
-            setFavStatus(statusFav)
+            tvTitile.text = tvShow.original_name
+            tvDateDetail.text = tvShow.first_air_date
+            tvOverviewDetail.text = tvShow.overview
+            voteAverage.text = tvShow.vote_average.toString()
+            val statusFav = tvShow.favorite_tv_show
+
+            statusFav.let { status ->
+                setFavStatus(status)
+            }
             binding.fabLove.setOnClickListener {
                 val dataTvShow = intent.getParcelableExtra<TvShowEntityRoom?>(EXTRA_TV_SHOW)
-                if (dataTvShow != null){
-                    setFavoriteTvShow(dataTvShow)
+                if (dataTvShow != null) {
+                    setFavoriteTvShow(tvShow)
                 }
 
 

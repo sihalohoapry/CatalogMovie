@@ -2,7 +2,6 @@ package com.sihaloho.catalogmovie.data
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import androidx.room.Query
 import com.sihaloho.catalogmovie.data.entity.MovieEntityRoom
 import com.sihaloho.catalogmovie.data.entity.TvShowEntityRoom
 import com.sihaloho.catalogmovie.data.vo.Resource

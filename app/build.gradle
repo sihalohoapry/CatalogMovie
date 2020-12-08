@@ -18,6 +18,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        buildConfigField("String", "API_CATALOG_MOVIE", '”4848804cd918ca98482c34aa81bddd27"')
     }
 
     buildTypes {

@@ -1,19 +1,13 @@
 package com.sihaloho.catalogmovie.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
-import com.sihaloho.catalogmovie.R
 import com.sihaloho.catalogmovie.data.viewmodel.MovieViewModel
 import com.sihaloho.catalogmovie.data.viewmodel.ViewModelFactory
 import com.sihaloho.catalogmovie.databinding.ActivityFavMovieBinding
 import com.sihaloho.catalogmovie.ui.adapter.FavMovieAdapter
-import com.sihaloho.catalogmovie.ui.adapter.MovieAdapter
 
 class FavMovieActivity : AppCompatActivity() {
 

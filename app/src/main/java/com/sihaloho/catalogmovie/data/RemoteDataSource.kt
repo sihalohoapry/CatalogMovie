@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sihaloho.catalogmovie.data.entity.MovieEntity
 import com.sihaloho.catalogmovie.data.entity.TvShowEntity
-import com.sihaloho.catalogmovie.data.response.MovieResponse
 import com.sihaloho.catalogmovie.data.retrofit.ApiConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
