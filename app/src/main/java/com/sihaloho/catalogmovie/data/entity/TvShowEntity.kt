@@ -13,7 +13,7 @@ data class TvShowEntity(
     val vote_average: Float,
     val overview: String?,
     val backdrop_path: String?,
-    val poster_path: String,
+    val poster_path: String?,
     val first_air_date: String,
 ) : Parcelable{
     val baseUrl get() = "https://image.tmdb.org/t/p/w500/"

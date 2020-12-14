@@ -30,7 +30,7 @@ data class TvShowEntityRoom(
     val backdrop_path: String?,
 
     @ColumnInfo(name = "poster_path")
-    val poster_path: String,
+    val poster_path: String?,
 
     @ColumnInfo(name = "first_air_date")
     val first_air_date: String,

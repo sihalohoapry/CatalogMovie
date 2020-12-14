@@ -18,7 +18,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        buildConfigField("String", "API_CATALOG_MOVIE", '”4848804cd918ca98482c34aa81bddd27"')
     }
 
     buildTypes {
@@ -67,6 +66,7 @@ dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+    implementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
 
 
     //architecture component
